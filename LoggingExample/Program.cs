@@ -19,6 +19,8 @@ namespace LoggingExample
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseSerilog((ctx, cfg) =>
                     {
+                        cfg.MinimumLevel.Information()
+                        .Enrich.FromLogContext();
                         cfg.WriteTo.Console(new ElasticsearchJsonFormatter());
                     });
                 });
